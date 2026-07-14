@@ -61,6 +61,7 @@
       currentIdx = idx;
       notes.forEach(function (n) {
         n.setAttribute("aria-pressed", n.dataset.anno === idx ? "true" : "false");
+        n.classList.toggle("current", n.dataset.anno === idx);
       });
       frame.querySelectorAll(".anno").forEach(function (a) {
         a.classList.toggle("active", a.dataset.anno === idx);

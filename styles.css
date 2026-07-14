@@ -517,7 +517,7 @@ p { margin: 0 0 1em; }
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: 32px;
-  align-items: start;
+  align-items: center;
 }
 @media (max-width: 980px) { .film-frame-wrap { grid-template-columns: 1fr; } }
 
@@ -561,8 +561,69 @@ p { margin: 0 0 1em; }
 
 .film-notes { display: flex; flex-direction: column; gap: 10px; }
 
+.film-note-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* carousel controls (both breakpoints) */
+.film-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+.film-dots { display: flex; gap: 10px; }
+.film-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: rgba(245, 247, 242, 0.25);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.film-dot.active { background: var(--cone); transform: scale(1.25); }
+.car-btn {
+  background: transparent;
+  border: 1px solid var(--line-dark);
+  color: var(--chalk);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  flex: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.car-btn:hover { border-color: var(--cone-deep); }
+.car-btn:active { background: rgba(255, 90, 31, 0.15); border-color: var(--cone); }
+
+/* desktop: one note at a time beside the board */
+@keyframes noteIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@media (min-width: 981px) {
+  .film-note { display: none; }
+  .film-note.current {
+    display: block;
+    padding: 28px 30px;
+    font-size: 1.05rem;
+  }
+  .film-note.current .stamp { font-size: 0.95rem; margin-bottom: 8px; }
+  .film-note.current strong { font-size: 1.2rem; margin-bottom: 6px; }
+}
+@media (min-width: 981px) and (prefers-reduced-motion: no-preference) {
+  .film-note.current { animation: noteIn 0.3s ease; }
+}
+
 /* mobile: notes become a swipeable carousel */
-.film-carousel-controls { display: none; }
 @media (max-width: 980px) {
   .film-notes {
     flex-direction: row;
@@ -579,38 +640,7 @@ p { margin: 0 0 1em; }
     flex: 0 0 86%;
     scroll-snap-align: center;
   }
-  .film-carousel-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    margin-top: 16px;
-  }
-  .film-dots { display: flex; gap: 10px; }
-  .film-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    border: 0;
-    padding: 0;
-    background: rgba(245, 247, 242, 0.25);
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
-  .film-dot.active { background: var(--cone); transform: scale(1.25); }
-  .car-btn {
-    background: transparent;
-    border: 1px solid var(--line-dark);
-    color: var(--chalk);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.05rem;
-    line-height: 1;
-    cursor: pointer;
-    flex: none;
-  }
-  .car-btn:active { background: rgba(255, 90, 31, 0.15); border-color: var(--cone-deep); }
+  .film-note-panel { margin-top: 24px; }
 }
 
 .film-note {
