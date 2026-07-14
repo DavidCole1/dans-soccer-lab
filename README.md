@@ -40,7 +40,6 @@ More/better photos later? Just overwrite these two files — no HTML changes nee
 
 ### 3. Real contact info
 In the footer of all four pages, replace:
-- `coach@danssoccerlab.com` → Daniel's real email (appears twice per page: link text + `mailto:`)
 - `https://instagram.com` → his real Instagram URL
 
 ### 4. Real testimonials
