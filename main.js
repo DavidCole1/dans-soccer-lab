@@ -1,4 +1,4 @@
-/* HALFSPACE — shared behavior */
+/* DAN'S SOCCER LAB — shared behavior */
 (function () {
   "use strict";
 
@@ -68,7 +68,7 @@
 
   /* ---------- forms ---------- */
   var PLACEHOLDER = "YOUR_FORM_ID";
-  document.querySelectorAll("form[data-halfspace-form]").forEach(function (form) {
+  document.querySelectorAll("form[data-dsl-form]").forEach(function (form) {
     var status = form.querySelector(".form-status");
     var btn = form.querySelector('button[type="submit"]');
 

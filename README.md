@@ -1,4 +1,4 @@
-# Halfspace Player Development — website
+# Dan’s Soccer Lab — website
 
 Static site for Coach Daniel. No build step, no dependencies — plain HTML/CSS/JS, ready for GitHub + Vercel.
 
@@ -13,7 +13,7 @@ Static site for Coach Daniel. No build step, no dependencies — plain HTML/CSS/
 
 ## Deploy (GitHub + Vercel)
 
-1. Create a new GitHub repo (e.g. `halfspace-site`) and push this folder's contents to the repo root.
+1. Create a new GitHub repo (e.g. `dans-soccer-lab`) and push this folder's contents to the repo root.
 2. In Vercel: **Add New → Project → Import** the repo.
 3. Framework preset: **Other**. Leave build command and output directory empty. Deploy.
 4. Add a custom domain in Vercel → Project → Settings → Domains when ready.
@@ -40,7 +40,7 @@ More/better photos later? Just overwrite these two files — no HTML changes nee
 
 ### 3. Real contact info
 In the footer of all four pages, replace:
-- `coach@halfspacepd.com` → Daniel's real email (appears twice per page: link text + `mailto:`)
+- `coach@danssoccerlab.com` → Daniel's real email (appears twice per page: link text + `mailto:`)
 - `https://instagram.com` → his real Instagram URL
 
 ### 4. Real testimonials

@@ -1,5 +1,5 @@
 /* ============================================================
-   HALFSPACE — Player Development
+   DAN'S SOCCER LAB — Player Development
    Palette:  turf #14382A · night #0B241B · pine #1D4A37
              chalk #F5F7F2 · paper #EFF2EC · ink #17251E
              cone #FF5A1F
@@ -194,6 +194,7 @@ p { margin: 0 0 1em; }
 .wordmark .half { color: var(--chalk); }
 .wordmark .slash { color: var(--cone); margin: 0 2px; font-weight: 700; }
 .wordmark .space { color: var(--muted-dark); }
+.wordmark .lab { color: var(--cone); }
 .wordmark small {
   font-family: var(--font-mono);
   font-size: 0.55rem;
