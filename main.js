@@ -50,7 +50,15 @@
   var frame = document.querySelector(".film-frame");
   if (notes.length && frame) {
     var clock = frame.querySelector(".frame-clock");
+    var wrap = document.querySelector(".film-notes");
+    var dotsBox = document.querySelector(".film-dots");
+    var prevBtn = document.querySelector(".car-btn.prev");
+    var nextBtn = document.querySelector(".car-btn.next");
+    var currentIdx = "1";
+    var dots = [];
+
     var setActive = function (idx) {
+      currentIdx = idx;
       notes.forEach(function (n) {
         n.setAttribute("aria-pressed", n.dataset.anno === idx ? "true" : "false");
       });
@@ -59,7 +67,63 @@
       });
       var current = document.querySelector('.film-note[data-anno="' + idx + '"] .stamp');
       if (clock && current) clock.textContent = current.textContent;
+      dots.forEach(function (d, i) {
+        d.classList.toggle("active", String(i + 1) === idx);
+      });
     };
+
+    var scrollToNote = function (i) {
+      var card = notes[i];
+      if (!card || !wrap) return;
+      var wr = wrap.getBoundingClientRect();
+      var cr = card.getBoundingClientRect();
+      var target = wrap.scrollLeft + (cr.left - wr.left) - (wr.width - cr.width) / 2;
+      wrap.scrollTo({ left: target, behavior: reduced ? "auto" : "smooth" });
+      setActive(String(i + 1));
+    };
+
+    // carousel dots (visible on mobile only, via CSS)
+    if (dotsBox) {
+      notes.forEach(function (n, i) {
+        var d = document.createElement("button");
+        d.type = "button";
+        d.className = "film-dot";
+        d.setAttribute("aria-label", "Show note " + (i + 1) + " of " + notes.length);
+        d.addEventListener("click", function () { scrollToNote(i); });
+        dotsBox.appendChild(d);
+        dots.push(d);
+      });
+    }
+    if (prevBtn) prevBtn.addEventListener("click", function () {
+      scrollToNote(Math.max(0, parseInt(currentIdx, 10) - 2));
+    });
+    if (nextBtn) nextBtn.addEventListener("click", function () {
+      scrollToNote(Math.min(notes.length - 1, parseInt(currentIdx, 10)));
+    });
+
+    // swipe sync: highlight whichever card is centered
+    if (wrap) {
+      var ticking = false;
+      wrap.addEventListener("scroll", function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          ticking = false;
+          if (wrap.scrollWidth <= wrap.clientWidth + 4) return; // not a carousel (desktop)
+          var wr = wrap.getBoundingClientRect();
+          var center = wr.left + wr.width / 2;
+          var best = 0, bd = Infinity;
+          notes.forEach(function (n, i) {
+            var r = n.getBoundingClientRect();
+            var d = Math.abs(r.left + r.width / 2 - center);
+            if (d < bd) { bd = d; best = i; }
+          });
+          var idx = String(best + 1);
+          if (idx !== currentIdx) setActive(idx);
+        });
+      }, { passive: true });
+    }
+
     notes.forEach(function (n) {
       n.addEventListener("click", function () { setActive(n.dataset.anno); });
     });
