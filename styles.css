@@ -984,6 +984,12 @@ textarea { resize: vertical; min-height: 110px; }
   text-align: center;
 }
 .cta-banner .btn { margin-top: 10px; }
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
 
 /* ------------------------------------------------ footer */
 
