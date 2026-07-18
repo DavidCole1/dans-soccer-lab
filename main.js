@@ -71,6 +71,7 @@
       dots.forEach(function (d, i) {
         d.classList.toggle("active", String(i + 1) === idx);
       });
+      if (typeof restartAutoplay === "function") restartAutoplay();
     };
 
     var scrollToNote = function (i) {
@@ -128,6 +129,28 @@
     notes.forEach(function (n) {
       n.addEventListener("click", function () { setActive(n.dataset.anno); });
     });
+
+    /* autoplay: advance every 10s, loop, pause when off-screen or tab hidden.
+       Any manual change (click, arrow, dot, swipe) resets the timer via setActive. */
+    var AUTOPLAY_MS = 10000;
+    var autoTimer = null;
+    var sectionVisible = true;
+    var sampleSection = document.getElementById("sample") || frame;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        sectionVisible = entries[0].isIntersecting;
+      }, { threshold: 0.15 }).observe(sampleSection);
+    }
+    var restartAutoplay = function () {
+      if (reduced) return;
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = setInterval(function () {
+        if (!sectionVisible || document.hidden) return;
+        var next = parseInt(currentIdx, 10) % notes.length; // 1-based idx -> next 0-based, wraps 4 -> 0
+        scrollToNote(next);
+      }, AUTOPLAY_MS);
+    };
+
     setActive("1");
   }
 
