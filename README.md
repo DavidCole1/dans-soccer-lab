@@ -20,30 +20,18 @@ Static site for Coach Daniel. No build step, no dependencies — plain HTML/CSS/
 
 Any later edit: commit + push, Vercel redeploys automatically.
 
-## Before launch — 4 swaps
+## Status
 
-Search each file for `SWAP:` and `SETUP:` comments. They mark every spot below.
+Live at https://dans-soccer-lab.vercel.app — forms connected (Formspree → dansoccerlab@gmail.com),
+phone & email in footer, SEO files (sitemap.xml, robots.txt, JSON-LD), Search Console verified,
+homepage indexed by Google. Google Business Profile created (verification pending).
 
-### 1. Connect the forms (Formspree, ~2 minutes)
-- Sign up free at [formspree.io](https://formspree.io), create a form, copy its ID.
-- Replace `YOUR_FORM_ID` in **both** forms:
-  - `index.html` (training inquiry form)
-  - `film-room.html` (film submission form)
-- One form ID works for both — the hidden `_subject` field labels which form each email came from.
-- Until connected, the forms fail gracefully: submissions are blocked and visitors are told to email directly.
+## Remaining swaps
 
-### 2. Real photos
-Drop Daniel's photos into `images/`, keeping these exact filenames (current files are styled placeholders):
-- `images/coach-huddle.jpg` — the floodlight group-talk photo (used on Home + About). Portrait crop, ~3:4.
-- `images/coach-session.jpg` — the daytime 1-on-1 photo (used on Training + About). Portrait crop, ~3:4.
-More/better photos later? Just overwrite these two files — no HTML changes needed.
-
-### 3. Real contact info
-In the footer of all four pages, replace:
-- `https://instagram.com` → his real Instagram URL
-
-### 4. Real testimonials
-The three quotes on `index.html` ("What families say") are **placeholders**. Replace them with real quotes from families before launch — or delete the section if none are ready.
+1. **Testimonials** — the three quotes on `index.html` are placeholders. Replace with real family quotes.
+2. **Instagram** — footer link points to instagram.com generically; set Daniel's real profile URL or remove.
+3. **Photos (optional)** — overwrite `images/coach-huddle.jpg` and `images/coach-session.jpg` anytime; no HTML changes needed.
+4. **Custom domain (optional)** — add in Vercel → Settings → Domains, then update og:url/og:image URLs in all pages + sitemap.xml.
 
 ## Notes
 
