@@ -22,7 +22,7 @@ Any later edit: commit + push, Vercel redeploys automatically.
 
 ## Status
 
-Live at https://cerebralsoccer.com — forms connected (Formspree → dansoccerlab@gmail.com),
+Live at https://cerebral-soccer.vercel.app — forms connected (Formspree → dansoccerlab@gmail.com),
 phone & email in footer, SEO files (sitemap.xml, robots.txt, JSON-LD), Search Console verified,
 homepage indexed by Google. Google Business Profile created (verification pending).
 
